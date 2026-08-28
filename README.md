@@ -2,22 +2,31 @@
 
 # 🐘 Hadoop-Lab-Guide
 
-### Hands-on Hadoop labs — MapReduce, HDFS and Hive.
+### Hadoop experiments — HDFS management & MapReduce analytics.
 
-Practical Java implementations for Hadoop experiments, from HDFS file ops to MapReduce aggregation.
+Directory scanning with small-file merging, plus multi-dimensional MapReduce statistics — a hands-on Hadoop lab.
 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-[![Java](https://img.shields.io/badge/Java-8+-007396?logo=openjdk&logoColor=white)](https://openjdk.org/)
-[![Hadoop](https://img.shields.io/badge/Hadoop-3-66CCFF?logo=apachehadoop&logoColor=black)](https://hadoop.apache.org/)
+[![Hadoop](https://img.shields.io/badge/Hadoop-3-66CCFF?logo=apachehadoop&logoColor=white)](https://hadoop.apache.org/)
+[![MapReduce](https://img.shields.io/badge/MapReduce-3-FF6F00)](https://hadoop.apache.org/docs/current/hadoop-mapreduce-client/)
 
 </div>
 
 ---
 
-**Hadoop-Lab-Guide** contains hands-on Java implementations for Hadoop experiments — **HDFS** file operations and **MapReduce** jobs for course-data aggregation and ranking.
+**Hadoop-Lab-Guide** is a hands-on Hadoop lab covering two core experiments: **HDFS directory scanning with small-file merging**, and **multi-dimensional MapReduce statistics** — with performance-focused implementations and full documentation.
 
 > [!NOTE]
-> 中文项目：Hadoop 实验项目实战——MapReduce、HDFS、Hive 实验。
+> 中文项目：Hadoop 实验指南——HDFS 目录扫描与小文件合并 + MapReduce 多维度统计分析。
+
+---
+
+## Features
+
+- **HDFS management** — directory scanning and small-file merging.
+- **MapReduce analytics** — multi-dimensional statistical analysis.
+- **Performance** — 1M student-score records, per-course average in ~1.2 min.
+- **Modular & reusable** — easy extension, complete scenario coverage.
 
 ---
 
@@ -27,22 +36,11 @@ Practical Java implementations for Hadoop experiments, from HDFS file ops to Map
 git clone https://github.com/Windyhhh/Hadoop-Lab-Guide.git
 cd Hadoop-Lab-Guide
 
-mvn clean package
-
-# Run an HDFS job
-hadoop jar target/*.jar com.example.hdfs.HDFSScanner /input
-
-# Run a MapReduce aggregation
-hadoop jar target/*.jar com.example.mr.CourseAverageCalculator /input /output
+# put data on HDFS and run the MapReduce job
+hdfs dfs -put data /input
+hadoop jar target/lab.jar com.example.ScoreAvg /input /output
+hdfs dfs -cat /output/part-r-00000
 ```
-
----
-
-## Features
-
-- **HDFS ops** — `HDFSFileMerger`, `HDFSScanner`.
-- **MapReduce aggregation** — course averages, student averages, top-three students.
-- **Report-ready** — includes experiment reports.
 
 ---
 
@@ -50,11 +48,10 @@ hadoop jar target/*.jar com.example.mr.CourseAverageCalculator /input /output
 
 ```
 Hadoop-Lab-Guide/
-├── src/main/java/com/example/
-│   ├── hdfs/            # HDFSFileMerger, HDFSScanner
-│   └── mr/              # CourseAverageCalculator, StudentCourseAverage, TopThreeStudents
-├── pom.xml
-└── README.md
+├── src/                    # MapReduce mappers / reducers
+├── data/                   # sample datasets
+├── scripts/                # HDFS + job scripts
+└── docs/                   # lab guide, blog
 ```
 
 ---
