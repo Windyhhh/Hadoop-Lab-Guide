@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🐘 Hadoop-Lab-Guide
+# Hadoop 实验指南 | Hadoop-Lab-Guide
 
 ### Hadoop experiments — HDFS management & MapReduce analytics.
 
